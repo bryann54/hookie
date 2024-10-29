@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hookee/features/home/presentation/pages/intro_screens.dart';
-import 'package:hookee/features/home/presentation/pages/splash_screen.dart';
+import 'package:hookee/features/profile/presentation/pages/ideai_match_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,12 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      debugShowCheckedModeBanner: false,
-      home:const IntroScreens()
-    );
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: const IdealMatchScreen());
   }
 }

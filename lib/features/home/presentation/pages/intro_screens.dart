@@ -25,7 +25,7 @@ class _IntroScreensState extends State<IntroScreens> {
       subtitle: 'Your privacy matters',
       description: 'Advanced security features',
       image:
-        'https://assets2.lottiefiles.com/packages/lf20_z4cshyhf.json', // Security shield animation
+          'https://assets2.lottiefiles.com/packages/lf20_z4cshyhf.json', // Security shield animation
     ),
     IntroContent(
       title: 'Start Your Journey',
