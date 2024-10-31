@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hookee/features/profile/presentation/pages/ideai_match_screen.dart';
+import 'package:hookee/features/home/presentation/widgets/bottom_nav.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +17,6 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
-        home: const IdealMatchScreen());
+        home: const BottomNav());
   }
 }
