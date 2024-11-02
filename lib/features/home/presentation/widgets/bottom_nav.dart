@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hookee/features/chat/presentation/pages/chat_screen.dart';
-import 'package:hookee/features/favorites/presentation/pages/discover_screen.dart';
+import 'package:hookee/features/discover/presentation/pages/discover_screen.dart';
 import 'package:hookee/features/favorites/presentation/pages/favorites_screen.dart';
 import 'package:hookee/features/home/presentation/pages/home_screen.dart';
 import 'package:hookee/features/profile/presentation/pages/profile_screen.dart';
