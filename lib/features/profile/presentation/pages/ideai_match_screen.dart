@@ -16,19 +16,19 @@ class _IdealMatchScreenState extends State<IdealMatchScreen> {
       'title': 'Love',
       'subtitle': 'You\'re not here to play around',
       'icon': Icons.favorite,
-           'color': Colors.pinkAccent,
+      'color': Colors.pinkAccent,
     },
     {
       'title': 'Friends',
       'subtitle': 'I want to meet new people',
       'icon': Icons.people,
-          'color': Colors.pinkAccent,
+      'color': Colors.pinkAccent,
     },
     {
       'title': 'Business',
       'subtitle': 'Meet business oriented people',
       'icon': Icons.business_center,
-           'color': Colors.pinkAccent,
+      'color': Colors.pinkAccent,
     },
   ];
 
@@ -83,7 +83,7 @@ class _IdealMatchScreenState extends State<IdealMatchScreen> {
                       borderRadius: BorderRadius.circular(12),
                       child: Material(
                         elevation: 1,
-                         borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12),
                         child: AnimatedContainer(
                           duration: const Duration(milliseconds: 200),
                           height: 80,

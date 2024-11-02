@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hookee/core/constants/bg_widger.dart';
+import 'package:hookee/core/constants/bg_widget.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});

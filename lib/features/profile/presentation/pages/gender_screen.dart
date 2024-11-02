@@ -115,7 +115,8 @@ class _GenderScreenState extends State<GenderScreen> {
                   ),
                 ),
                 const Spacer(flex: 1),
-                Row(mainAxisAlignment: MainAxisAlignment.center,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildGenderCard(
                       gender: 'Male',
@@ -126,7 +127,7 @@ class _GenderScreenState extends State<GenderScreen> {
                   ],
                 ),
                 const SizedBox(height: 24),
-               Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildGenderCard(

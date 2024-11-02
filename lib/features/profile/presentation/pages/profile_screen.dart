@@ -1,7 +1,5 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:hookee/core/constants/bg_widger.dart';
+import 'package:hookee/core/constants/bg_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

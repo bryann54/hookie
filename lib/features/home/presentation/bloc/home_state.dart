@@ -1,3 +1,4 @@
+// home_state.dart
 part of 'home_bloc.dart';
 
 abstract class HomeState extends Equatable {
@@ -8,3 +9,23 @@ abstract class HomeState extends Equatable {
 }
 
 class HomeInitial extends HomeState {}
+
+class HomeLoading extends HomeState {}
+
+class HomeLoaded extends HomeState {
+  final List<User> users;
+
+  const HomeLoaded(this.users);
+
+  @override
+  List<Object> get props => [users];
+}
+
+class HomeError extends HomeState {
+  final String message;
+
+  const HomeError(this.message);
+
+  @override
+  List<Object> get props => [message];
+}
