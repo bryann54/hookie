@@ -63,16 +63,20 @@ class _UserDetailsScreenState extends State<UserDetailsScreen>
                     ),
                   ),
                   // Positioned Action Buttons
-                  const Positioned(
+             Positioned(
                     left: 0,
                     right: 0,
                     bottom: 10,
                     child: Hero(
                       tag: 'actionButtons',
-                   child: ActionButtonsWidget(
-                          isDarkMode: true,
-                        ) ),
+                      child: ActionButtonsWidget(
+                        isDarkMode: isDarkMode,
+                        user: widget.user,
+                      ),
+                    ),
                   ),
+
+
           
                   Positioned(
                     top: 40,

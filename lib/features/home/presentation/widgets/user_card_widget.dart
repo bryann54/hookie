@@ -126,7 +126,7 @@ class _UserCardWidgetState extends State<UserCardWidget> {
             bottom: 5, 
             child: Hero(
               tag: 'actionButtons${widget.user.id}',
-              child: ActionButtonsWidget(isDarkMode: true,
+              child: ActionButtonsWidget(isDarkMode: true, user: widget.user,
                 
               ) ),
           ),

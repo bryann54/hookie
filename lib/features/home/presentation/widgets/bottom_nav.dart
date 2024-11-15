@@ -32,7 +32,9 @@ class _BottomNavState extends State<BottomNav> {
     return [
       const HomeScreen(),
       const DiscoverScreen(),
-      const FavoriteScreen(),
+       FavoriteScreen(
+        
+       ),
       ChatsScreen(user: widget.user), // Pass the user to ChatsScreen
       const ProfileScreen(),
     ];
