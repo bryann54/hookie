@@ -53,30 +53,30 @@ class _BottomNavState extends State<BottomNav> {
         unselectedItemColor: Colors.grey.shade600,
         showUnselectedLabels: true,
         showSelectedLabels: true,
-        items: [
+        items: const [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.local_fire_department_outlined),
-            activeIcon: const Icon(Icons.local_fire_department),
+            icon: Icon(Icons.local_fire_department_outlined),
+            activeIcon: Icon(Icons.local_fire_department),
             label: 'For You',
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.location_on_outlined),
-            activeIcon: const Icon(Icons.location_on),
+            icon: Icon(Icons.location_on_outlined),
+            activeIcon: Icon(Icons.location_on),
             label: 'Nearby',
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.favorite_border),
-            activeIcon: const Icon(Icons.favorite),
+            icon: Icon(Icons.favorite_border),
+            activeIcon: Icon(Icons.favorite),
             label: 'Likes',
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.chat_bubble_outline),
-            activeIcon: const Icon(Icons.chat_bubble),
+            icon: Icon(Icons.chat_bubble_outline),
+            activeIcon: Icon(Icons.chat_bubble),
             label: 'Chat',
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.person_outline),
-            activeIcon: const Icon(Icons.person),
+            icon: Icon(Icons.person_outline),
+            activeIcon: Icon(Icons.person),
             label: 'Profile',
           ),
         ],
