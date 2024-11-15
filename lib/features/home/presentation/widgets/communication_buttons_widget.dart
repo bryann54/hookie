@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hookee/features/chat/presentation/pages/call_screen.dart';
+import 'package:hookee/features/chat/presentation/pages/chat_screen.dart';
 import 'package:hookee/features/home/data/models/user_model.dart';
-
 class CommunicationButtonsWidget extends StatelessWidget {
   final User user;
   const CommunicationButtonsWidget({super.key, required this.user});
@@ -24,7 +25,14 @@ class CommunicationButtonsWidget extends StatelessWidget {
                 backgroundColor: theme.colorScheme.primary,
               ),
               onPressed: () {
-                // Add your text action logic here
+                // Navigate to the ChatScreen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ChatScreen(user: user),
+                  ),
+                );
               },
               child: Text(
                 'Text ${user.name}',
@@ -45,7 +53,12 @@ class CommunicationButtonsWidget extends StatelessWidget {
                 backgroundColor: theme.colorScheme.secondary,
               ),
               onPressed: () {
-                // Add your call action logic here
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CallScreen(user: user),
+                  ),
+                );
               },
               child: Text(
                 'Call ${user.name}',

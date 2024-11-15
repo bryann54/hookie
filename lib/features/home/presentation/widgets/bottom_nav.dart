@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hookee/features/chat/presentation/pages/chat_screen.dart';
+import 'package:hookee/features/chat/presentation/pages/chats_screen.dart';
 import 'package:hookee/features/discover/presentation/pages/discover_screen.dart';
 import 'package:hookee/features/favorites/presentation/pages/favorites_screen.dart';
+import 'package:hookee/features/home/data/models/user_model.dart';
 import 'package:hookee/features/home/presentation/pages/home_screen.dart';
 import 'package:hookee/features/profile/presentation/pages/profile_screen.dart';
 
@@ -16,7 +17,8 @@ class NavigationController extends ChangeNotifier {
 }
 
 class BottomNav extends StatefulWidget {
-  const BottomNav({super.key});
+  final User user;
+  const BottomNav({super.key, required this.user});
 
   @override
   State createState() => _BottomNavState();
@@ -25,13 +27,16 @@ class BottomNav extends StatefulWidget {
 class _BottomNavState extends State<BottomNav> {
   final NavigationController _controller = NavigationController();
 
-  final List _screens = [
-    const HomeScreen(),
-    const DiscoverScreen(),
-    const FavoriteScreen(),
-    const ChatScreen(),
-    const ProfileScreen(),
-  ];
+  // Create the list of screens dynamically, passing `widget.user` to ChatsScreen
+  List<Widget> get _screens {
+    return [
+      const HomeScreen(),
+      const DiscoverScreen(),
+      const FavoriteScreen(),
+      ChatsScreen(user: widget.user), // Pass the user to ChatsScreen
+      const ProfileScreen(),
+    ];
+  }
 
   void _onItemTapped(int index) {
     if (_controller.currentIndex == index) return;
@@ -44,7 +49,7 @@ class _BottomNavState extends State<BottomNav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_controller.currentIndex],
+      body: _screens[_controller.currentIndex], // Show the current screen
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _controller.currentIndex,
         onTap: _onItemTapped,
@@ -53,30 +58,30 @@ class _BottomNavState extends State<BottomNav> {
         unselectedItemColor: Colors.grey.shade600,
         showUnselectedLabels: true,
         showSelectedLabels: true,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_fire_department_outlined),
-            activeIcon: Icon(Icons.local_fire_department),
+            icon: const Icon(Icons.local_fire_department_outlined),
+            activeIcon: const Icon(Icons.local_fire_department),
             label: 'For You',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.location_on_outlined),
-            activeIcon: Icon(Icons.location_on),
+            icon: const Icon(Icons.location_on_outlined),
+            activeIcon: const Icon(Icons.location_on),
             label: 'Nearby',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
-            activeIcon: Icon(Icons.favorite),
+            icon: const Icon(Icons.favorite_border),
+            activeIcon: const Icon(Icons.favorite),
             label: 'Likes',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat_bubble_outline),
-            activeIcon: Icon(Icons.chat_bubble),
+            icon: const Icon(Icons.chat_bubble_outline),
+            activeIcon: const Icon(Icons.chat_bubble),
             label: 'Chat',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            activeIcon: Icon(Icons.person),
+            icon: const Icon(Icons.person_outline),
+            activeIcon: const Icon(Icons.person),
             label: 'Profile',
           ),
         ],
