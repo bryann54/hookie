@@ -12,7 +12,8 @@ class ChatsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Dispatch event to load users when the screen is first loaded
+     final theme = Theme.of(context);
+
     context.read<HomeBloc>().add(LoadUsersEvent());
 
     return Scaffold(
@@ -54,7 +55,7 @@ class ChatsScreen extends StatelessWidget {
                               state.users[index]; // Get the user from the state
 
                    return Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(2.0),
                             child: GestureDetector(
                               onTap: () {
                                 // Correct navigation using MaterialPageRoute
@@ -68,10 +69,9 @@ class ChatsScreen extends StatelessWidget {
                                 );
                               },
                               child: Card(
-                                elevation: 4.0, // Subtle elevation for the card
+      
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                      12.0), // Rounded corners for card
+                                
                                 ),
                                 child: ListTile(
                                   leading: CircleAvatar(
@@ -96,10 +96,18 @@ class ChatsScreen extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(user
-                                          .name), // Use user.name from state
+                                          .name,
+                                           style: theme.textTheme.titleLarge
+                                            ?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                          ), // Use user.name from state
                                       Text(
                                         user.profession, // Use user.profession from state
-                                        style: const TextStyle(fontSize: 12),
+                                         style: theme.textTheme.bodyMedium
+                                            ?.copyWith(
+                                          height: 1.5,
+                                        ),
                                       ),
                                     ],
                                   ),
