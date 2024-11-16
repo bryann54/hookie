@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:hookee/core/constants/bg_widget.dart';
 import 'package:hookee/features/favorites/presentation/bloc/favorites_bloc.dart';
 import 'package:hookee/features/favorites/presentation/widgets/favorites_widget.dart';
@@ -43,29 +44,35 @@ class FavoriteScreen extends StatelessWidget {
                         ),
                       );
                     }
-                    return ListView.builder(
-                      itemCount: state.favorites.length,
-                      itemBuilder: (context, index) {
-                        final favoriteUser = state.favorites[index];
-                        return Dismissible(
-                          key: ValueKey(favoriteUser.id), // Use unique key
-                          direction: DismissDirection.endToStart,
-                          background: Container(
-                            color: Colors.red,
-                            alignment: Alignment.centerRight,
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child:
-                                const Icon(Icons.delete, color: Colors.white),
-                          ),
-                          onDismissed: (_) {
-                            // Dispatch event to remove favorite
-                            context.read<FavoritesBloc>().add(
-                                  RemoveFromFavorites(favoriteUser),
-                                );
-                          },
-                          child: FavoritesWidget(user: favoriteUser),
-                        );
-                      },
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: MasonryGridView.count(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 8,
+                        crossAxisSpacing: 8,
+                        itemCount: state.favorites.length,
+                        itemBuilder: (context, index) {
+                          final favoriteUser = state.favorites[index];
+                          return Dismissible(
+                            key: ValueKey(favoriteUser.id),
+                            direction: DismissDirection.endToStart,
+                            background: Container(
+                              color: Colors.red,
+                              alignment: Alignment.centerRight,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child:
+                                  const Icon(Icons.delete, color: Colors.white),
+                            ),
+                            onDismissed: (_) {
+                              context.read<FavoritesBloc>().add(
+                                    RemoveFromFavorites(favoriteUser),
+                                  );
+                            },
+                            child: FavoritesWidget(user: favoriteUser),
+                          );
+                        },
+                      ),
                     );
                   } else if (state is FavoritesError) {
                     return Center(
