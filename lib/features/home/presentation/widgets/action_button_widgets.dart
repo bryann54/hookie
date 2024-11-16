@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hookee/core/constants/custom_snackbar_widget.dart';
+
 class ActionButton extends StatefulWidget {
   final IconData icon;
   final Color iconColor;
@@ -13,7 +13,7 @@ class ActionButton extends StatefulWidget {
     required this.iconColor,
     required this.bgColor,
     required this.onTap,
-    this.changeColorOnTap = true,
+    this.changeColorOnTap = true, // Default: enable color change
   }) : super(key: key);
 
   @override
@@ -33,14 +33,6 @@ class _ActionButtonState extends State<ActionButton> {
           });
         }
         widget.onTap(); // Trigger the provided onTap callback
-
-        // Use CustomAnimatedSnackbar
-        CustomAnimatedSnackbar.show(
-          context: context,
-          message: '${widget.icon} button tapped',
-          icon: widget.icon,
-          backgroundColor: widget.bgColor,
-        );
       },
       child: Container(
         height: 60,

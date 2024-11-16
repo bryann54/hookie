@@ -79,7 +79,7 @@ class _BottomNavState extends State<BottomNav> {
           BottomNavigationBarItem(
             icon: const Icon(Icons.chat_bubble_outline),
             activeIcon: const Icon(Icons.chat_bubble),
-            label: 'Chat',
+            label: 'Chats',
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.person_outline),
