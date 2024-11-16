@@ -1,26 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hookee/app.dart';
 import 'package:hookee/features/home/data/repositories/user_repository.dart';
-import 'package:hookee/features/home/presentation/bloc/home_bloc.dart';
-import 'package:hookee/features/home/presentation/widgets/bottom_nav.dart';
+import 'package:hookee/features/home/data/models/user_model.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final UserRepository userRepository = UserRepository();
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // Fetch users and select the first user
+  final List<User> users = await userRepository.getUsers();
+  final User user =
+      users.isNotEmpty ? users.first : throw Exception('No users available');
 
-  @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => HomeBloc(UserRepository())),
-      ],
-      child: const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: BottomNav(),
-      ),
-    );
-  }
+  runApp(App(user: user));
 }

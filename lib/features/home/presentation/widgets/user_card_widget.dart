@@ -1,9 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:hookee/features/home/data/models/user_model.dart';
 import 'package:hookee/features/home/presentation/pages/user_details_screen.dart';
-import 'package:hookee/features/home/presentation/widgets/action_button_widgets.dart';
+import 'package:hookee/features/home/presentation/widgets/action_buttons_widget.dart';
 
 class UserCardWidget extends StatefulWidget {
-  const UserCardWidget({super.key});
+  final User user;
+  const UserCardWidget({super.key, required this.user});
 
   @override
   State<UserCardWidget> createState() => _UserCardWidgetState();
@@ -12,6 +15,7 @@ class UserCardWidget extends StatefulWidget {
 class _UserCardWidgetState extends State<UserCardWidget> {
   @override
   Widget build(BuildContext context) {
+     Theme.of(context);
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -19,7 +23,7 @@ class _UserCardWidgetState extends State<UserCardWidget> {
           PageRouteBuilder(
             transitionDuration: const Duration(milliseconds: 800),
             pageBuilder: (context, animation, secondaryAnimation) =>
-                const UserDetailsScreen(),
+                UserDetailsScreen(user: widget.user),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               return FadeTransition(
@@ -30,117 +34,103 @@ class _UserCardWidgetState extends State<UserCardWidget> {
           ),
         );
       },
-      child: Expanded(
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(24),
-          child: Stack(
-            children: [
-              Hero(
-                tag: 'userImage',
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.65,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24),
-                    image: const DecorationImage(
-                      image: AssetImage('assets/model.webp'),
-                      fit: BoxFit.cover,
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 25),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(24),
+              child: Stack(
+                children: [
+                  Hero(
+                    tag: 'userImage${widget.user.id}',
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.65,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24),
+                        image: DecorationImage(
+                          image:
+                              CachedNetworkImageProvider(widget.user.imageUrl),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-              Positioned(
-                left: 16,
-                right: 16,
-                bottom: -95,
-                child: Hero(
-                  tag: 'userInfo',
-                  child: Material(
-                    color: Colors.transparent,
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.3,
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Positioned(
+                    left: 8,
+                    right: 16,
+                    bottom: -120,
+                    child: Hero(
+                      tag: 'userInfo${widget.user.id}',
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * 0.25,
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    'Alexa, 22',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '${widget.user.name}, ${widget.user.age}',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        widget.user.profession,
+                                        style: const TextStyle(
+                                          color: Colors.white70,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  Text(
-                                    'UI/UX Designer',
-                                    style: TextStyle(
-                                      color: Colors.white70,
-                                      fontSize: 16,
+                                  Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.2),
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: const Icon(
+                                      Icons.more_vert,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ],
                               ),
-                              Container(
-                                height: 40,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.2),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: const Icon(
-                                  Icons.more_vert,
-                                  color: Colors.white,
-                                ),
-                              ),
                             ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
                   ),
-                ),
+                ],
               ),
-              const Positioned(
-                left: 0,
-                right: 0,
-                bottom: -20,
-                child: Hero(
-                  tag: 'actionButtons',
-                  child: Material(
-                    color: Colors.transparent,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ActionButton(
-                          icon: Icons.close,
-                          iconColor: Colors.red,
-                          bgColor: Colors.white,
-                        ),
-                        SizedBox(width: 12),
-                        ActionButton(
-                          icon: Icons.favorite,
-                          iconColor: Colors.pink,
-                          bgColor: Colors.white,
-                        ),
-                        SizedBox(width: 12),
-                        ActionButton(
-                          icon: Icons.star,
-                          iconColor: Colors.amber,
-                          bgColor: Colors.white,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+          // Action Buttons positioned outside the ClipRRect but maintaining position
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 5, 
+            child: Hero(
+              tag: 'actionButtons${widget.user.id}',
+              child: ActionButtonsWidget(isDarkMode: true, user: widget.user,
+                
+              ) ),
+          ),
+        ],
       ),
     );
   }

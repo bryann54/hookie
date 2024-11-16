@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:hookee/core/constants/colors.dart';
 class AnimatedBackground extends StatelessWidget {
   final AnimationController controller;
 
@@ -21,7 +21,7 @@ class AnimatedBackground extends StatelessWidget {
               child: _buildCircle(
                 width: 150,
                 height: 150,
-                color: Colors.pink.shade100,
+                color: AppColors.primaryColor,
               ),
             ),
             Positioned(
@@ -30,7 +30,7 @@ class AnimatedBackground extends StatelessWidget {
               child: _buildCircle(
                 width: 300,
                 height: 200,
-                color: Colors.pink.shade200,
+                color: AppColors.secondaryColor,
               ),
             ),
           ],

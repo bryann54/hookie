@@ -8,7 +8,7 @@ class AnimatedBackgroundWidget extends StatefulWidget {
       : super(key: key);
 
   @override
-  _AnimatedBackgroundWidgetState createState() =>
+  State<AnimatedBackgroundWidget> createState() =>
       _AnimatedBackgroundWidgetState();
 }
 

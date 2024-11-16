@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart'; // Make sure to import this
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hookee/core/constants/bg_widget.dart';
-import 'package:hookee/features/home/presentation/bloc/home_bloc.dart'; // Import your HomeBloc
+import 'package:hookee/features/home/presentation/bloc/home_bloc.dart';
 import 'package:hookee/features/home/presentation/widgets/search_bar_widget.dart';
 import 'package:hookee/features/home/presentation/widgets/user_card_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen(
+      {super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -16,7 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Dispatch LoadUsersEvent in didChangeDependencies
     context.read<HomeBloc>().add(LoadUsersEvent());
   }
 
@@ -73,7 +73,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         const Spacer(),
-                        // Notification Icon
                         Container(
                           height: 42,
                           width: 42,
@@ -110,21 +109,37 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 16),
                     CustomSearchBar(
                       onSearch: (query) {
-                        // Handle search here later
                         print('Searching for: $query');
                       },
                       onFilterTap: () {
-                        // Handle filter button tap later
                         print('Filter tapped');
                       },
                     ),
                   ],
                 ),
               ),
-              // Expanded section for the user card
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: const UserCardWidget(),
+              // User cards section with BlocBuilder
+              Expanded(
+                child: BlocBuilder<HomeBloc, HomeState>(
+                  builder: (context, state) {
+                    if (state is HomeLoadingState) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is HomeLoadedState) {
+                      return PageView.builder(
+                        itemCount: state.users.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: UserCardWidget(user: state.users[index]),
+                          );
+                        },
+                      );
+                    } else if (state is HomeErrorState) {
+                      return Center(child: Text(state.error));
+                    }
+                    return const SizedBox();
+                  },
+                ),
               ),
             ],
           ),
