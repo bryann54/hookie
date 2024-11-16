@@ -31,7 +31,7 @@ class _BottomNavState extends State<BottomNav> {
   List<Widget> get _screens {
     return [
       const HomeScreen(),
-      const DiscoverScreen(),
+       DiscoverScreen(),
        FavoriteScreen(
         
        ),
