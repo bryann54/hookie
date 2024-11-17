@@ -1,9 +1,9 @@
-// user_repository.dart
+// user_service.dart
 import 'package:hookee/features/home/data/models/user_model.dart';
 
-class UserRepository {
+class UserService {
   List<User> getUsers() {
-    return [
+      return [
       User(
         id: 1,
         name: 'Alexa',
@@ -140,5 +140,6 @@ class UserRepository {
         ],
       ),
     ];
+ 
   }
 }

@@ -47,21 +47,22 @@ class _UserDetailsScreenState extends State<UserDetailsScreen>
               borderRadius: BorderRadius.circular(40),
               child: Stack(
                 children: [
-                  Hero(
-                    tag: 'userImage',
+               Hero(
+                    tag: 'userImage-${widget.user.id}',
                     child: Container(
-                      height: 400,
+                      height: 450,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(24),
-                        image:  DecorationImage(
+                        image: DecorationImage(
                           image:
-                              CachedNetworkImageProvider(widget.user.imageUrl), 
+                              CachedNetworkImageProvider(widget.user.imageUrl),
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
                   ),
+
                   // Positioned Action Buttons
              Positioned(
                     left: 0,

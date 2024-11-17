@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hookee/core/constants/bg_widget.dart';
 import 'package:hookee/features/home/presentation/bloc/home_bloc.dart';
+import 'package:hookee/features/notifications/presentation/bloc/notifications_bloc.dart';
+import 'package:hookee/features/notifications/presentation/bloc/notifications_state.dart';
+import 'package:hookee/features/notifications/presentation/pages/notificatio_screen.dart';
 import 'package:hookee/features/home/presentation/widgets/search_bar_widget.dart';
 import 'package:hookee/features/home/presentation/widgets/user_card_widget.dart';
 
@@ -73,37 +76,74 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         const Spacer(),
-                        Container(
-                          height: 42,
-                          width: 42,
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade100,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Stack(
-                            children: [
-                              const Center(
-                                child: Icon(
-                                  Icons.notifications_outlined,
-                                  color: Colors.black87,
-                                  size: 24,
-                                ),
-                              ),
-                              Positioned(
-                                right: 10,
-                                top: 10,
-                                child: Container(
-                                  height: 8,
-                                  width: 8,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.red,
-                                    shape: BoxShape.circle,
+                 GestureDetector(
+                          onTap: () {
+                            // Navigate to the notification screen when tapped
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const NotificationScreen()),
+                            );
+                          },
+                          child: Container(
+                            height: 42,
+                            width: 42,
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade100,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Stack(
+                              children: [
+                                const Center(
+                                  child: Icon(
+                                    Icons.notifications_outlined,
+                                    color: Colors.black87,
+                                    size: 24,
                                   ),
                                 ),
-                              ),
-                            ],
+                                BlocBuilder<NotificationsBloc,
+                                    NotificationsState>(
+                                  builder: (context, state) {
+                                    int unreadCount = 0;
+                                    if (state is NotificationsLoaded) {
+                                      unreadCount = state.notifications
+                                          .where((notification) =>
+                                              !notification.isRead)
+                                          .length;
+                                    }
+
+                                    return Positioned(
+                                      right: 0,
+                                      top: 0,
+                                      child: unreadCount > 0
+                                          ? Container(
+                                              height: 16,
+                                              width: 16,
+                                              decoration: const BoxDecoration(
+                                                color: Colors.red,
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  '$unreadCount',
+                                                  style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          : const SizedBox
+                                              .shrink(), // If no unread notifications, don't show the badge
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
+                        )
                       ],
                     ),
                     const SizedBox(height: 16),

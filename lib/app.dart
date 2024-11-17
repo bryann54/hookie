@@ -6,6 +6,8 @@ import 'package:hookee/features/home/data/models/user_model.dart';
 import 'package:hookee/features/home/data/repositories/user_repository.dart';
 import 'package:hookee/features/home/presentation/bloc/home_bloc.dart';
 import 'package:hookee/features/home/presentation/widgets/bottom_nav.dart';
+import 'package:hookee/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:hookee/features/notifications/presentation/bloc/notifications_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 class App extends StatelessWidget {
@@ -19,6 +21,11 @@ class App extends StatelessWidget {
         BlocProvider(create: (_) => HomeBloc(UserRepository()),),
           BlocProvider(
           create: (_) => FavoritesBloc(),
+        ),
+         BlocProvider(
+          create: (_) => NotificationsBloc( repository: NotificationsRepositoryImpl()
+        )
+                ..add(const LoadNotifications()),
         ),
      ],
       child: ChangeNotifierProvider(
