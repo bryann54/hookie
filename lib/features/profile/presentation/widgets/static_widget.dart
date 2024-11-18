@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hookee/features/profile/presentation/widgets/stattic_item_widget.dart';
 
 class ProfileStatisticsSection extends StatelessWidget {
+  const ProfileStatisticsSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -12,7 +14,7 @@ class ProfileStatisticsSection extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            ProfileStatisticItem(
+            const ProfileStatisticItem(
               icon: Icons.favorite_rounded,
               label: "Matches",
               count: "28",
@@ -25,7 +27,7 @@ class ProfileStatisticsSection extends StatelessWidget {
                 thickness: 2.0,
               ),
             ),
-            ProfileStatisticItem(
+            const ProfileStatisticItem(
               icon: Icons.chat_bubble_rounded,
               label: "Chats",
               count: "15",
@@ -38,7 +40,7 @@ class ProfileStatisticsSection extends StatelessWidget {
                 thickness: 2.0,
               ),
             ),
-            ProfileStatisticItem(
+            const ProfileStatisticItem(
               icon: Icons.visibility_rounded,
               label: "Profile Views",
               count: "142",

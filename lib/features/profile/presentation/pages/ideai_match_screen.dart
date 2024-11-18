@@ -117,7 +117,7 @@ class _IdealMatchScreenState extends State<IdealMatchScreen> {
                             ),
                             title: Text(
                               option['title'],
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
@@ -153,7 +153,7 @@ class _IdealMatchScreenState extends State<IdealMatchScreen> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: Text(
+                      child: const Text(
                         'Continue',
                         style: TextStyle(
                           fontSize: 18,

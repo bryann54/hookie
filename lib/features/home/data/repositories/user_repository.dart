@@ -5,6 +5,8 @@ class UserRepository {
   List<User> getUsers() {
     return [
       User(
+        city: 'Nairobi',
+        country: 'Kenya',
         id: 1,
         name: 'Alexa',
         age: 24,
@@ -22,6 +24,8 @@ class UserRepository {
         ],
       ),
       User(
+        city: 'Nairobi',
+        country: 'Kenya',
         id: 2,
         name: 'Sophie',
         age: 23,
@@ -39,8 +43,10 @@ class UserRepository {
         ],
       ),
       User(
+        city: 'Nairobi',
+        country: 'Kenya',
         id: 3,
-        name: 'Emma',
+        name: 'Kev',
         age: 25,
         profession: 'Digital Marketing Manager',
         imageUrl:
@@ -56,6 +62,8 @@ class UserRepository {
         ],
       ),
       User(
+        city: 'Nairobi',
+        country: 'Kenya',
         id: 4,
         name: 'Isabella',
         age: 26,
@@ -73,12 +81,14 @@ class UserRepository {
         ],
       ),
       User(
+        city: 'Nairobi',
+        country: 'Kenya',
         id: 5,
         name: 'Mia',
         age: 24,
         profession: 'Chef',
         imageUrl:
-            'https://wallpapers.com/images/hd/young-female-model-black-outfit-9pkvtmom688tos4e.jpg',
+            'https://media.istockphoto.com/id/1411160666/photo/confident-female-with-bold-personality-and-cool-attitude-portrait-of-an-edgy-young-woman.jpg?s=612x612&w=0&k=20&c=qfAQM7x5YwXDayf04bmq7SHsqUWlZP-gA6cO4pKaGcc=',
         bio:
             "Culinary artist with a taste for adventure. Let's explore the world one dish at a time!",
         hobbies: [
@@ -90,12 +100,14 @@ class UserRepository {
         ],
       ),
       User(
+        city: 'Nairobi',
+        country: 'Kenya',
         id: 6,
         name: 'Luna',
         age: 27,
         profession: 'Astronomy Professor',
         imageUrl:
-            'https://static.vecteezy.com/system/resources/previews/030/557/451/large_2x/ai-generative-portrait-of-handsome-male-model-fashion-background-banner-with-copy-space-text-commercial-template-free-photo.jpg',
+            'https://media.istockphoto.com/id/1366225011/photo/beauty-portrait-of-african-american-girl-with-afro-hair.jpg?s=612x612&w=0&k=20&c=inR3a70AHtkLIghIrnwiWpYb1FQ5nd3Rzcf-OD8URo4=',
         bio:
             "Star gazer and space enthusiast. Looking for someone to share cosmic adventures with.",
         hobbies: [
@@ -107,12 +119,14 @@ class UserRepository {
         ],
       ),
       User(
+        city: 'Nairobi',
+        country: 'Kenya',
         id: 7,
-        name: 'Zoe',
+        name: 'Nick',
         age: 25,
         profession: 'Music Producer',
         imageUrl:
-            'https://www.ukmodels.co.uk/wp-content/uploads/2020/10/shutterstock_136135856-1024x694.jpg',
+            'https://www.mavnmodels.com/wp-content/uploads/2023/12/2020-05-11_2306818852301650671-819x1024.jpg',
         bio: "Creating beats and chasing dreams. Music is my language of love.",
         hobbies: [
           'DJing 🎧',
@@ -123,12 +137,14 @@ class UserRepository {
         ],
       ),
       User(
+        city: 'Nairobi',
+        country: 'Kenya',
         id: 8,
         name: 'Ruby',
         age: 23,
         profession: 'Professional Athlete',
         imageUrl:
-            'https://wallpapers.com/images/hd/young-female-model-black-outfit-9pkvtmom688tos4e.jpg',
+            'https://www.africanprintinfashion.com/wp-content/uploads/2015/04/malaika-firth-by-jean-baptiste-mondino-apif-march-2015_2.jpg',
         bio:
             "Former Olympic swimmer turned yoga instructor. Teaching others to find their inner peace through movement.",
         hobbies: [

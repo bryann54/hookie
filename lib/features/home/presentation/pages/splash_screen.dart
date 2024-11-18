@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hookee/core/constants/animated_bg.dart';
 import 'dart:async';
 import 'package:hookee/core/constants/string.dart';
 
@@ -70,12 +69,13 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
+    //  final theme = Theme.of(context);
+    // final isDarkMode = theme.brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: Colors.pink.shade50.withOpacity(0.9),
       body: Stack(
         children: [
           // Using the new AnimatedBackground widget
-          AnimatedBackground(controller: _controller),
+          // AnimatedBackground(controller: _controller),
 
           // Main content
           Center(
@@ -107,7 +107,7 @@ class _SplashScreenState extends State<SplashScreen>
                             hookie,
                             style: TextStyle(
                               fontFamily: 'Dancing Script',
-                              fontSize: 45,
+                              fontSize: 35,
                               fontWeight: FontWeight.bold,
                               foreground: Paint()
                                 ..style = PaintingStyle.fill
@@ -128,7 +128,7 @@ class _SplashScreenState extends State<SplashScreen>
                               hookie,
                               style: TextStyle(
                                 fontFamily: 'Dancing Script',
-                                fontSize: 45,
+                                fontSize: 35,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 shadows: [

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hookee/core/constants/colors.dart';
 
 class ProfileOptionsSection extends StatelessWidget {
+  const ProfileOptionsSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -154,6 +156,7 @@ class ProfileOptionItem extends StatelessWidget {
   final Widget? trailing;
 
   const ProfileOptionItem({
+    super.key,
     required this.icon,
     required this.title,
     required this.onTap,
@@ -192,13 +195,8 @@ class _CustomDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16,
-      vertical: 1
-      ),
-      child: Divider(
-        color: Colors.grey[200],
-        thickness: 3
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 1),
+      child: Divider(color: Colors.grey[200], thickness: 3),
     );
   }
 }

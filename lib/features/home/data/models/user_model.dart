@@ -6,15 +6,18 @@ class User {
   final String profession;
   final String imageUrl;
   final String bio;
-   final List<String> hobbies;
+  final String city;
+  final String country;
+  final List<String> hobbies;
 
-  User({
-    required this.id,
-    required this.name,
-    required this.age,
-    required this.profession,
-    required this.imageUrl,
-    required this.bio,
-    required this.hobbies
-  });
+  User(
+      {required this.id,
+      required this.country,
+      required this.name,
+      required this.city,
+      required this.age,
+      required this.profession,
+      required this.imageUrl,
+      required this.bio,
+      required this.hobbies});
 }

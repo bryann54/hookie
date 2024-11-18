@@ -12,7 +12,7 @@ class ChatsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     final theme = Theme.of(context);
+    final theme = Theme.of(context);
 
     context.read<HomeBloc>().add(LoadUsersEvent());
 
@@ -54,7 +54,7 @@ class ChatsScreen extends StatelessWidget {
                           final user =
                               state.users[index]; // Get the user from the state
 
-                   return Padding(
+                          return Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: GestureDetector(
                               onTap: () {
@@ -69,10 +69,7 @@ class ChatsScreen extends StatelessWidget {
                                 );
                               },
                               child: Card(
-      
-                                shape: RoundedRectangleBorder(
-                                
-                                ),
+                                shape: const RoundedRectangleBorder(),
                                 child: ListTile(
                                   leading: CircleAvatar(
                                     radius: 25.0,
@@ -95,16 +92,16 @@ class ChatsScreen extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(user
-                                          .name,
-                                           style: theme.textTheme.titleLarge
+                                      Text(
+                                        user.name,
+                                        style: theme.textTheme.titleLarge
                                             ?.copyWith(
                                           fontWeight: FontWeight.bold,
                                         ),
-                                          ), // Use user.name from state
+                                      ), // Use user.name from state
                                       Text(
                                         user.profession, // Use user.profession from state
-                                         style: theme.textTheme.bodyMedium
+                                        style: theme.textTheme.bodyMedium
                                             ?.copyWith(
                                           height: 1.5,
                                         ),
@@ -115,7 +112,7 @@ class ChatsScreen extends StatelessWidget {
                               ),
                             ),
                           );
- },
+                        },
                       );
                     } else if (state is HomeErrorState) {
                       return Center(child: Text(state.error));

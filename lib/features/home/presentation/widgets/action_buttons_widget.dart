@@ -16,7 +16,7 @@ class ActionButtonsWidget extends StatelessWidget {
     required this.user,
   });
 
-void _showSnackbar({
+  void _showSnackbar({
     required BuildContext context,
     required String message,
     required IconData icon,
@@ -29,7 +29,6 @@ void _showSnackbar({
       backgroundColor: backgroundColor,
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -59,18 +58,22 @@ void _showSnackbar({
                 bgColor: isDarkMode ? AppColors.surfaceColorDark : Colors.white,
                 onTap: () {
                   if (isFavorite) {
-                    context.read<FavoritesBloc>().add(RemoveFromFavorites(user));
-                    _showSnackbar( message: '${user.name} removed from favorites', context: context, icon: Icons.favorite,
+                    context
+                        .read<FavoritesBloc>()
+                        .add(RemoveFromFavorites(user));
+                    _showSnackbar(
+                      message: '${user.name} removed from favorites',
+                      context: context,
+                      icon: Icons.favorite,
                     );
                   } else {
                     context.read<FavoritesBloc>().add(AddToFavorites(user));
-                   _showSnackbar(
+                    _showSnackbar(
                       context: context,
                       message: '${user.name} added to favorites',
                       icon: Icons.favorite,
                       backgroundColor: Colors.green,
                     );
-
                   }
                   debugPrint("Favorite button tapped");
                 },

@@ -14,9 +14,9 @@ class FavoriteScreen extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: const Text(
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
                 'Liked Profiles',
                 style: TextStyle(
                   fontSize: 24,

@@ -26,7 +26,7 @@ class ProfileScreen extends StatelessWidget {
                     CircleAvatar(
                       radius: 40,
                       backgroundColor: AppColors.accentColor.withOpacity(0.2),
-                      child: Icon(
+                      child: const Icon(
                         Icons.person,
                         size: 40,
                         color: AppColors.accentColor,
@@ -70,9 +70,9 @@ class ProfileScreen extends StatelessWidget {
                         color: AppColors.accentColor.withOpacity(.5)),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 12.0),
+                  child: const Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -82,8 +82,8 @@ class ProfileScreen extends StatelessWidget {
                               Icons.dark_mode,
                               color: AppColors.accentColor,
                             ),
-                            const SizedBox(width: 12),
-                            const Text(
+                            SizedBox(width: 12),
+                            Text(
                               'Dark Mode',
                               style: TextStyle(
                                 fontSize: 16,
@@ -107,7 +107,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                 ),
                 const SizedBox(height: 12),
-                ProfileStatisticsSection(),
+                const ProfileStatisticsSection(),
                 const SizedBox(height: 24),
 
                 // Options Section
@@ -118,7 +118,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                 ),
                 const SizedBox(height: 12),
-                ProfileOptionsSection(),
+                const ProfileOptionsSection(),
                 const SizedBox(height: 24),
 
                 // Logout Button

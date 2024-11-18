@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart'; // Import the package
 import 'package:hookee/features/chat/presentation/pages/chats_screen.dart';
 import 'package:hookee/features/discover/presentation/pages/discover_screen.dart';
 import 'package:hookee/features/favorites/presentation/pages/favorites_screen.dart';
@@ -31,61 +32,37 @@ class _BottomNavState extends State<BottomNav> {
   List<Widget> get _screens {
     return [
       const HomeScreen(),
-       DiscoverScreen(),
-       FavoriteScreen(
-        
-       ),
+      const DiscoverScreen(),
+      const FavoriteScreen(),
       ChatsScreen(user: widget.user), // Pass the user to ChatsScreen
       const ProfileScreen(),
     ];
-  }
-
-  void _onItemTapped(int index) {
-    if (_controller.currentIndex == index) return;
-
-    setState(() {
-      _controller.setIndex(index);
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _screens[_controller.currentIndex], // Show the current screen
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _controller.currentIndex,
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: const Color(0xFFFF4B8A),
-        unselectedItemColor: Colors.grey.shade600,
-        showUnselectedLabels: true,
-        showSelectedLabels: true,
-        items: [
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.local_fire_department_outlined),
-            activeIcon: const Icon(Icons.local_fire_department),
-            label: 'For You',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.location_on_outlined),
-            activeIcon: const Icon(Icons.location_on),
-            label: 'Nearby',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.favorite_border),
-            activeIcon: const Icon(Icons.favorite),
-            label: 'Likes',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.chat_bubble_outline),
-            activeIcon: const Icon(Icons.chat_bubble),
-            label: 'Chats',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.person_outline),
-            activeIcon: const Icon(Icons.person),
-            label: 'Profile',
-          ),
+      bottomNavigationBar: CurvedNavigationBar(
+        index: _controller.currentIndex,
+        height: 75.0,
+        backgroundColor: Colors.transparent, // Matches the screen background
+        color: const Color(0xFFFF4B8A), // NavBar background color
+        buttonBackgroundColor:
+            const Color(0xFFFF4B8A), // Selected icon background color
+        animationDuration: const Duration(milliseconds: 300),
+        animationCurve: Curves.easeInOut,
+        onTap: (index) {
+          setState(() {
+            _controller.setIndex(index);
+          });
+        },
+        items: const [
+          Icon(Icons.local_fire_department, size: 35, color: Colors.white),
+          Icon(Icons.location_on, size: 35, color: Colors.white),
+          Icon(Icons.favorite, size: 35, color: Colors.white),
+          Icon(Icons.chat_bubble, size: 35, color: Colors.white),
+          Icon(Icons.person, size: 35, color: Colors.white),
         ],
       ),
     );

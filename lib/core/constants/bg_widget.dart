@@ -4,8 +4,7 @@ import 'package:hookee/core/constants/animated_bg.dart';
 class AnimatedBackgroundWidget extends StatefulWidget {
   final Widget child;
 
-  const AnimatedBackgroundWidget({Key? key, required this.child})
-      : super(key: key);
+  const AnimatedBackgroundWidget({super.key, required this.child});
 
   @override
   State<AnimatedBackgroundWidget> createState() =>
