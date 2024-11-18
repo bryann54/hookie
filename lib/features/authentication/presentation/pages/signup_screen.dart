@@ -86,9 +86,7 @@ class _SignupScreenState extends State<SignupScreen>
         await Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => BottomNav(
-              user: widget.user,
-            ),
+            builder: (context) => BottomNav(user: widget.user,),
           ),
         );
       }
@@ -130,7 +128,7 @@ class _SignupScreenState extends State<SignupScreen>
         await Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => BottomNav(
+            builder: (context) =>  BottomNav(
               user: widget.user,
             ),
           ),
@@ -279,9 +277,8 @@ class _SignupScreenState extends State<SignupScreen>
                             foreground: Paint()
                               ..style = PaintingStyle.fill
                               ..strokeWidth = 3
-                              ..color = isDarkMode
-                                  ? AppColors.cardColor
-                                  : Colors.black,
+                              ..color =
+                                  isDarkMode ? AppColors.cardColor : Colors.black,
                           ),
                         ),
                         const SizedBox(height: 20),
