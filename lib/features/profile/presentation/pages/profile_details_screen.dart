@@ -84,7 +84,7 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 150,
                   ),
                   const Text(

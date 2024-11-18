@@ -7,6 +7,7 @@ class ProfileStatisticItem extends StatelessWidget {
   final String count;
 
   const ProfileStatisticItem({
+    super.key,
     required this.icon,
     required this.label,
     required this.count,

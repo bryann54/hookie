@@ -17,7 +17,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       LoadUsersEvent event, Emitter<HomeState> emit) async {
     emit(HomeLoadingState());
     try {
-      final users = await userRepository.getUsers();
+      final users = userRepository.getUsers();
       emit(HomeLoadedState(users));
     } catch (e) {
       emit(HomeErrorState(e.toString()));

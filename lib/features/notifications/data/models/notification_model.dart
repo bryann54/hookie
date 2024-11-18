@@ -8,7 +8,7 @@ class NotificationModel extends Equatable {
   final String id;
   final String message;
   final String userId;
-  final String? userImage; 
+  final String? userImage;
   final DateTime timestamp;
   final NotificationType type;
   final bool isRead;

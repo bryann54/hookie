@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hookee/features/home/data/models/user_model.dart';
 
@@ -33,7 +32,7 @@ class RadialUserAvatar extends StatelessWidget {
             ),
             child: CircleAvatar(
               radius: 40,
-              backgroundImage: NetworkImage(user.imageUrl),
+              backgroundImage: CachedNetworkImageProvider(user.imageUrl),
             ),
           ),
           const SizedBox(height: 4),

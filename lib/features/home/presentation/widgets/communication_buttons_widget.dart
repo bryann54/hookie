@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hookee/features/chat/presentation/pages/call_screen.dart';
 import 'package:hookee/features/chat/presentation/pages/chat_screen.dart';
 import 'package:hookee/features/home/data/models/user_model.dart';
+
 class CommunicationButtonsWidget extends StatelessWidget {
   final User user;
   const CommunicationButtonsWidget({super.key, required this.user});
@@ -29,8 +30,7 @@ class CommunicationButtonsWidget extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        ChatScreen(user: user),
+                    builder: (context) => ChatScreen(user: user),
                   ),
                 );
               },

@@ -5,10 +5,10 @@ class CustomSearchBar extends StatefulWidget {
   final VoidCallback onFilterTap;
 
   const CustomSearchBar({
-    Key? key,
+    super.key,
     required this.onSearch,
     required this.onFilterTap,
-  }) : super(key: key);
+  });
 
   @override
   State<CustomSearchBar> createState() => _CustomSearchBarState();
@@ -25,6 +25,9 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+
     return Row(
       children: [
         Expanded(
@@ -32,14 +35,19 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
             height: 50,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             decoration: BoxDecoration(
-              color: Colors.grey.shade300.withOpacity(.5),
+              border: Border.all(
+                color: isDarkMode
+                    ? Colors.pinkAccent.shade100.withOpacity(.3)
+                    : Colors.grey.shade300,
+              ),
+              color: isDarkMode ? Colors.grey.shade600 : Colors.white,
               borderRadius: BorderRadius.circular(12),
             ),
             child: Row(
               children: [
                 Icon(
                   Icons.search,
-                  color: Colors.grey.shade600,
+                  color: isDarkMode ? Colors.white : Colors.grey.shade600,
                   size: 24,
                 ),
                 const SizedBox(width: 12),
@@ -50,15 +58,11 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                     decoration: InputDecoration(
                       hintText: 'Search',
                       hintStyle: TextStyle(
-                        color: Colors.grey.shade600,
+                        color: isDarkMode ? Colors.white : Colors.grey.shade600,
                         fontSize: 16,
                       ),
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.zero,
-                    ),
-                    style: TextStyle(
-                      color: Colors.grey.shade800,
-                      fontSize: 16,
                     ),
                   ),
                 ),

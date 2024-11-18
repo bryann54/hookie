@@ -1,10 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hookee/features/home/data/models/user_model.dart';
 
 class CentralUserWidget extends StatelessWidget {
   final User user;
 
-  const CentralUserWidget({Key? key, required this.user}) : super(key: key);
+  const CentralUserWidget({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class CentralUserWidget extends StatelessWidget {
             ),
             child: CircleAvatar(
               radius: 70,
-              backgroundImage: NetworkImage(user.imageUrl),
+              backgroundImage: CachedNetworkImageProvider(user.imageUrl),
             ),
           ),
           const SizedBox(height: 8),
@@ -36,8 +37,8 @@ class CentralUserWidget extends StatelessWidget {
             style: theme.textTheme.displaySmall?.copyWith(height: 0.5),
           ),
           Text(
-            '${user.age} years',
-            style: theme.textTheme.bodyMedium?.copyWith(height: 2.6),
+            '${user.city}, ${user.country}',
+            style: theme.textTheme.bodyMedium?.copyWith(height: 3),
           ),
         ],
       ),

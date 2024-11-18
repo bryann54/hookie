@@ -14,7 +14,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  TextEditingController _messageController = TextEditingController();
+  final TextEditingController _messageController = TextEditingController();
   List<String> messages = [];
 
   @override
@@ -27,7 +27,7 @@ class _ChatScreenState extends State<ChatScreen> {
     setState(() {
       if (_messageController.text.isNotEmpty) {
         messages.add(_messageController.text);
-        _messageController.clear(); 
+        _messageController.clear();
       }
     });
   }
@@ -55,25 +55,26 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ),
           ),
-          title: Column(mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          title: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(widget.user.name),
-               Text(widget.user.profession,style: TextStyle(
-                fontSize: 12
-               ),),
+              Text(
+                widget.user.profession,
+                style: const TextStyle(fontSize: 12),
+              ),
             ],
           ),
-          trailing: GestureDetector
-          (
-            onTap:     () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CallScreen(user:widget.user),
-                  ),
-                );
-              },
+          trailing: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CallScreen(user: widget.user),
+                ),
+              );
+            },
             child: Container(
               height: 40,
               width: 40,

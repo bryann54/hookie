@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hookee/core/constants/colors.dart';
 import 'package:hookee/core/constants/string.dart';
+
 class CustomLogoutDialog extends StatelessWidget {
   final VoidCallback onConfirm;
   final VoidCallback onCancel;
 
   const CustomLogoutDialog({
-    Key? key,
+    super.key,
     required this.onConfirm,
     required this.onCancel,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +33,12 @@ class CustomLogoutDialog extends StatelessWidget {
       actions: <Widget>[
         GestureDetector(
           onTap: onCancel, // Cancel action
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Center(
               child: Text(
                 cancel,
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.redAccent,
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -48,8 +49,8 @@ class CustomLogoutDialog extends StatelessWidget {
         ),
         GestureDetector(
           onTap: onConfirm, // Confirm (logout) action
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Center(
               child: Text(
                 logout,

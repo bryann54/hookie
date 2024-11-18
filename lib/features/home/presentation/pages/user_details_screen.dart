@@ -47,7 +47,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen>
               borderRadius: BorderRadius.circular(40),
               child: Stack(
                 children: [
-               Hero(
+                  Hero(
                     tag: 'userImage-${widget.user.id}',
                     child: Container(
                       height: 450,
@@ -64,7 +64,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen>
                   ),
 
                   // Positioned Action Buttons
-             Positioned(
+                  Positioned(
                     left: 0,
                     right: 0,
                     bottom: 10,
@@ -77,8 +77,6 @@ class _UserDetailsScreenState extends State<UserDetailsScreen>
                     ),
                   ),
 
-
-          
                   Positioned(
                     top: 40,
                     left: 16,
@@ -117,7 +115,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                                '${widget.user.name}, ${widget.user.age}',
+                              '${widget.user.name}, ${widget.user.age}',
                               style: theme.textTheme.displayMedium?.copyWith(
                                 fontWeight: FontWeight.bold,
                               ),
@@ -153,101 +151,118 @@ class _UserDetailsScreenState extends State<UserDetailsScreen>
                       ],
                     ),
                     const SizedBox(height: 20),
-                  Text(
+                    Text(
                       'About ${widget.user.name} :',
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
                     const SizedBox(height: 8),
                     Text(
-                     widget.user.bio,
+                      widget.user.bio,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         height: 1.4,
                       ),
                     ),
-        Padding(
-  padding: const EdgeInsets.all(8.0),
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        'Interests:',
-        style: theme.textTheme.titleLarge?.copyWith(
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      const SizedBox(height: 12),
-      Wrap(
-        spacing: 8,
-        runSpacing: 8,
-        children: widget.user.hobbies.asMap().entries.map((entry) {
-          final hobby = entry.value;
-          final index = entry.key;
-          
-          return TweenAnimationBuilder<double>(
-            tween: Tween(begin: 0.0, end: 1.0),
-            duration: Duration(milliseconds: 200 + (index * 100)),
-            builder: (context, value, child) {
-              return Transform.scale(
-                scale: value,
-                child: Opacity(
-                  opacity: value,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      color: isDarkMode
-                          ? AppColors.cardColorDark.withOpacity(0.8)
-                          : Colors.grey.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: isDarkMode
-                            ? AppColors.accentColor.withOpacity(0.3)
-                            : AppColors.accentColorDark.withOpacity(0.2),
-                        width: 1,
-                      ),
-                      boxShadow: [
-                        if (!isDarkMode)
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
-                            blurRadius: 4,
-                            offset: const Offset(0, 2),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Interests:',
+                            style: theme.textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                      ],
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          hobby.split(' ').last,
-                          style: const TextStyle(fontSize: 16),
-                        ),
-                        const SizedBox(width: 6),
-                        Text(
-                          hobby.split(' ').sublist(0, hobby.split(' ').length - 1).join(' '),
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            height: 1.4,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            },
-          );
-        }).toList(),
-      ),
-      CommunicationButtonsWidget(user: widget.user,)
-    ],
-  ),
-),
+                          const SizedBox(height: 12),
+                          Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
+                            children: widget.user.hobbies
+                                .asMap()
+                                .entries
+                                .map((entry) {
+                              final hobby = entry.value;
+                              final index = entry.key;
 
+                              return TweenAnimationBuilder<double>(
+                                tween: Tween(begin: 0.0, end: 1.0),
+                                duration:
+                                    Duration(milliseconds: 200 + (index * 100)),
+                                builder: (context, value, child) {
+                                  return Transform.scale(
+                                    scale: value,
+                                    child: Opacity(
+                                      opacity: value,
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 12,
+                                          vertical: 8,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: isDarkMode
+                                              ? AppColors.cardColorDark
+                                                  .withOpacity(0.8)
+                                              : Colors.grey.withOpacity(0.1),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          border: Border.all(
+                                            color: isDarkMode
+                                                ? AppColors.accentColor
+                                                    .withOpacity(0.3)
+                                                : AppColors.accentColorDark
+                                                    .withOpacity(0.2),
+                                            width: 1,
+                                          ),
+                                          boxShadow: [
+                                            if (!isDarkMode)
+                                              BoxShadow(
+                                                color: Colors.grey
+                                                    .withOpacity(0.1),
+                                                blurRadius: 4,
+                                                offset: const Offset(0, 2),
+                                              ),
+                                          ],
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              hobby.split(' ').last,
+                                              style:
+                                                  const TextStyle(fontSize: 16),
+                                            ),
+                                            const SizedBox(width: 6),
+                                            Text(
+                                              hobby
+                                                  .split(' ')
+                                                  .sublist(
+                                                      0,
+                                                      hobby.split(' ').length -
+                                                          1)
+                                                  .join(' '),
+                                              style: theme.textTheme.bodyMedium
+                                                  ?.copyWith(
+                                                height: 1.4,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            }).toList(),
+                          ),
+                          CommunicationButtonsWidget(
+                            user: widget.user,
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),

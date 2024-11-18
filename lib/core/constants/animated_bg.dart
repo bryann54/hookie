@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hookee/core/constants/colors.dart';
+
 class AnimatedBackground extends StatelessWidget {
   final AnimationController controller;
 
   const AnimatedBackground({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

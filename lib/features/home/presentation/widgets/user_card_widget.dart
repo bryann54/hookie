@@ -15,7 +15,7 @@ class UserCardWidget extends StatefulWidget {
 class _UserCardWidgetState extends State<UserCardWidget> {
   @override
   Widget build(BuildContext context) {
-     Theme.of(context);
+    Theme.of(context);
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -87,7 +87,7 @@ class _UserCardWidgetState extends State<UserCardWidget> {
                                         ),
                                       ),
                                       Text(
-                                        widget.user.profession,
+                                        '${widget.user.city}, ${widget.user.country}',
                                         style: const TextStyle(
                                           color: Colors.white70,
                                           fontSize: 16,
@@ -119,16 +119,17 @@ class _UserCardWidgetState extends State<UserCardWidget> {
               ),
             ),
           ),
-          // Action Buttons positioned outside the ClipRRect but maintaining position
+          // Action Buttons
           Positioned(
             left: 0,
             right: 0,
-            bottom: 5, 
+            bottom: 5,
             child: Hero(
-              tag: 'actionButtons${widget.user.id}',
-              child: ActionButtonsWidget(isDarkMode: true, user: widget.user,
-                
-              ) ),
+                tag: 'actionButtons${widget.user.id}',
+                child: ActionButtonsWidget(
+                  isDarkMode: true,
+                  user: widget.user,
+                )),
           ),
         ],
       ),

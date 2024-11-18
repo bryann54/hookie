@@ -4,7 +4,7 @@ import 'package:hookee/features/discover/presentation/widgets/radial_users_displ
 import 'package:hookee/features/home/data/models/user_model.dart';
 import 'package:hookee/features/discover/presentation/widgets/central_user_widget.dart';
 
-class RadialUsersDisplay extends StatelessWidget {
+class RadialUsersDisplay extends StatefulWidget {
   final User centralUser;
   final List<User> users;
   final Function(User) onCentralUserChanged;
@@ -19,15 +19,72 @@ class RadialUsersDisplay extends StatelessWidget {
   });
 
   @override
+  State<RadialUsersDisplay> createState() => _RadialUsersDisplayState();
+}
+
+class _RadialUsersDisplayState extends State<RadialUsersDisplay>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _populateController;
+  late Animation<double> _centralUserAnimation;
+  late List<Animation<double>> _userAnimations;
+
+  @override
+  void initState() {
+    super.initState();
+    _populateController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    );
+    _setupAnimations();
+    _populateController.forward();
+  }
+
+  void _setupAnimations() {
+    _centralUserAnimation = CurvedAnimation(
+      parent: _populateController,
+      curve: const Interval(0.0, 0.4, curve: Curves.easeOutBack),
+    );
+
+    _userAnimations = List.generate(
+      widget.users.length,
+      (index) => CurvedAnimation(
+        parent: _populateController,
+        curve: Interval(
+          0.3 + (0.7 * index / widget.users.length),
+          0.3 + (0.7 * (index + 1) / widget.users.length),
+          curve: Curves.easeOutBack,
+        ),
+      ),
+    );
+  }
+
+  @override
+  void didUpdateWidget(RadialUsersDisplay oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.users != widget.users ||
+        oldWidget.centralUser != widget.centralUser) {
+      _populateController.reset();
+      _setupAnimations();
+      _populateController.forward();
+    }
+  }
+
+  @override
+  void dispose() {
+    _populateController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final radius = screenSize.width * 0.35;
-    
+
     return LayoutBuilder(
       builder: (context, constraints) {
         final centerX = constraints.maxWidth / 2;
         final centerY = constraints.maxHeight / 2.5;
-        
+
         return SizedBox(
           width: constraints.maxWidth,
           height: constraints.maxHeight,
@@ -38,16 +95,22 @@ class RadialUsersDisplay extends StatelessWidget {
               Positioned(
                 left: centerX - 100,
                 top: centerY - 90,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: List.generate(
-                    3,
-                    (index) => WaveEffect(
-                      color: Colors.purple.withOpacity(0.2),
-                      size: 180,
-                      animationController: animationController,
-                      delay: Duration(milliseconds: 500 * index),
-                      waveCount: 3,
+                child: ScaleTransition(
+                  scale: _centralUserAnimation,
+                  child: FadeTransition(
+                    opacity: _centralUserAnimation,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: List.generate(
+                        3,
+                        (index) => WaveEffect(
+                          color: Colors.purple.withOpacity(0.2),
+                          size: 180,
+                          animationController: widget.animationController,
+                          delay: Duration(milliseconds: 500 * index),
+                          waveCount: 3,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -55,14 +118,20 @@ class RadialUsersDisplay extends StatelessWidget {
 
               // Central user
               Positioned(
-                left: centerX -80,
+                left: centerX - 80,
                 top: centerY - 70,
-                child: CentralUserWidget(user: centralUser),
+                child: ScaleTransition(
+                  scale: _centralUserAnimation,
+                  child: FadeTransition(
+                    opacity: _centralUserAnimation,
+                    child: CentralUserWidget(user: widget.centralUser),
+                  ),
+                ),
               ),
 
               // Peripheral users with waves
               ...List.generate(
-                min(7, users.length),
+                min(7, widget.users.length),
                 (index) {
                   final angle = (2 * pi / 7) * index;
                   final xOffset = radius * cos(angle);
@@ -70,22 +139,29 @@ class RadialUsersDisplay extends StatelessWidget {
 
                   return Positioned(
                     left: centerX + xOffset - 50,
-                    top: centerY + yOffset -9,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        WaveEffect(
-                          color: Colors.purple.withOpacity(0.15),
-                          size: 100,
-                          animationController: animationController,
-                          delay: Duration(milliseconds: 300 * index),
-                          waveCount: 2,
+                    top: centerY + yOffset - 15,
+                    child: ScaleTransition(
+                      scale: _userAnimations[index],
+                      child: FadeTransition(
+                        opacity: _userAnimations[index],
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            WaveEffect(
+                              color: Colors.purple.withOpacity(0.15),
+                              size: 90,
+                              animationController: widget.animationController,
+                              delay: Duration(milliseconds: 300 * index),
+                              waveCount: 2,
+                            ),
+                            RadialUserAvatar(
+                              user: widget.users[index],
+                              onTap: () => widget
+                                  .onCentralUserChanged(widget.users[index]),
+                            ),
+                          ],
                         ),
-                        RadialUserAvatar(
-                          user: users[index],
-                          onTap: () => onCentralUserChanged(users[index]),
-                        ),
-                      ],
+                      ),
                     ),
                   );
                 },
@@ -111,7 +187,7 @@ class WaveEffect extends StatelessWidget {
     required this.size,
     required this.animationController,
     this.delay,
-    this.waveCount = 3,
+    this.waveCount = 5,
   });
 
   @override
@@ -160,7 +236,7 @@ class WavePainter extends CustomPainter {
     for (int i = 0; i < waveCount; i++) {
       final progress = (animation.value + i / waveCount) % 1.0;
       final opacity = 1.0 - progress;
-      
+
       final Paint paint = Paint()
         ..color = color.withOpacity(opacity)
         ..style = PaintingStyle.stroke
