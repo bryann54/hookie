@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hookee/core/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
+
 class ThemeToggle extends StatelessWidget {
+  const ThemeToggle({super.key});
+
   @override
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context);

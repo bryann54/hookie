@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-const hookie = 'hookie';
+const hookie = 'Dial A Mechy...';
 const signup_text = 'Signup to continue';
 const email_option = 'Continue with Email';
 const phone_option = 'Continue with Phone Number';
@@ -71,4 +71,3 @@ const analytics = 'Analytics Dashboard';
 const dashboard = 'Dashboard';
 const no_events = 'No events to display...';
 const events_txt = 'Your Events';
-

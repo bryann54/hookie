@@ -9,8 +9,7 @@ import 'package:hookee/features/home/presentation/widgets/search_bar_widget.dart
 import 'package:hookee/features/home/presentation/widgets/user_card_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen(
-      {super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -25,6 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+
     return Scaffold(
       body: AnimatedBackgroundWidget(
         child: SafeArea(
@@ -56,10 +58,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
+                                Text(
                                   'Location',
                                   style: TextStyle(
-                                    color: Colors.black87,
+                                    color: isDarkMode
+                                        ? Colors.white
+                                        : Colors.black87,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 16,
                                   ),
@@ -76,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         const Spacer(),
-                 GestureDetector(
+                        GestureDetector(
                           onTap: () {
                             // Navigate to the notification screen when tapped
                             Navigator.push(
@@ -90,7 +94,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 42,
                             width: 42,
                             decoration: BoxDecoration(
-                              color: Colors.grey.shade100,
+                              color: isDarkMode
+                                  ? Colors.grey.shade400
+                                  : Colors.white,
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Stack(
@@ -114,12 +120,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     }
 
                                     return Positioned(
-                                      right: 0,
-                                      top: 0,
+                                      right: -1,
+                                      top: -1,
                                       child: unreadCount > 0
                                           ? Container(
-                                              height: 16,
-                                              width: 16,
+                                              height: 17,
+                                              width: 17,
                                               decoration: const BoxDecoration(
                                                 color: Colors.red,
                                                 shape: BoxShape.circle,
@@ -129,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   '$unreadCount',
                                                   style: const TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 10,
+                                                    fontSize: 13,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),

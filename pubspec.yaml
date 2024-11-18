@@ -25,13 +25,13 @@ dependencies:
   fade_scroll_app_bar: ^0.0.7
   flutter_chat_ui: ^1.6.15
   flutter_chat_types: ^3.4.5
-  floating_frosted_bottom_bar: ^0.0.1
-  flutter_floating_bottom_bar: ^1.2.1+1
+  curved_navigation_bar: ^1.0.6
   provider: ^6.1.1
   smooth_page_indicator: ^1.0.0+2
   lottie: ^2.7.0
   google_fonts: ^5.0.0
   google_nav_bar: ^5.0.7
+  country_code_picker: ^3.1.0
   flutter_staggered_grid_view: ^0.7.0 
 
 dev_dependencies:

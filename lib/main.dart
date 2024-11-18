@@ -8,7 +8,7 @@ void main() async {
   final UserRepository userRepository = UserRepository();
 
   // Fetch users and select the first user
-  final List<User> users = await userRepository.getUsers();
+  final List<User> users = userRepository.getUsers();
   final User user =
       users.isNotEmpty ? users.first : throw Exception('No users available');
 

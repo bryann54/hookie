@@ -10,7 +10,6 @@ abstract class NotificationsRepository {
 }
 
 class NotificationsRepositoryImpl implements NotificationsRepository {
-  
   final List<NotificationModel> _notifications = [
     NotificationModel(
       id: '1',

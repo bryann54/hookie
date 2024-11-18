@@ -45,7 +45,7 @@ class CallScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-               Spacer(),
+                const Spacer(),
                 CircleAvatar(
                   radius: 70.0,
                   backgroundImage: CachedNetworkImageProvider(user.imageUrl),
@@ -68,15 +68,14 @@ class CallScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 32),
-                Text(
+                const Text(
                   "Calling...", // Indicating the call is in progress
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 18,
                     color: Colors.white70,
                   ),
                 ),
-               Spacer()
-,
+                const Spacer(),
                 // Call action buttons (Mute, Speaker, End Call)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -105,7 +104,9 @@ class CallScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 50,)
+                const SizedBox(
+                  height: 50,
+                )
               ],
             ),
           ),

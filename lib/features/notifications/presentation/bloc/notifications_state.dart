@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:hookee/features/notifications/data/models/notification_model.dart';
 
-
 abstract class NotificationsState extends Equatable {
   const NotificationsState();
 

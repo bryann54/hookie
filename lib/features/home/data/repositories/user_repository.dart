@@ -5,6 +5,8 @@ class UserRepository {
   List<User> getUsers() {
     return [
       User(
+        city: 'Nairobi',
+        country: 'Kenya',
         id: 1,
         name: 'Alexa',
         age: 24,
@@ -22,6 +24,8 @@ class UserRepository {
         ],
       ),
       User(
+        city: 'Nairobi',
+        country: 'Kenya',
         id: 2,
         name: 'Sophie',
         age: 23,
@@ -39,6 +43,8 @@ class UserRepository {
         ],
       ),
       User(
+        city: 'Nairobi',
+        country: 'Kenya',
         id: 3,
         name: 'Kev',
         age: 25,
@@ -56,6 +62,8 @@ class UserRepository {
         ],
       ),
       User(
+        city: 'Nairobi',
+        country: 'Kenya',
         id: 4,
         name: 'Isabella',
         age: 26,
@@ -73,6 +81,8 @@ class UserRepository {
         ],
       ),
       User(
+        city: 'Nairobi',
+        country: 'Kenya',
         id: 5,
         name: 'Mia',
         age: 24,
@@ -90,6 +100,8 @@ class UserRepository {
         ],
       ),
       User(
+        city: 'Nairobi',
+        country: 'Kenya',
         id: 6,
         name: 'Luna',
         age: 27,
@@ -107,6 +119,8 @@ class UserRepository {
         ],
       ),
       User(
+        city: 'Nairobi',
+        country: 'Kenya',
         id: 7,
         name: 'Nick',
         age: 25,
@@ -123,6 +137,8 @@ class UserRepository {
         ],
       ),
       User(
+        city: 'Nairobi',
+        country: 'Kenya',
         id: 8,
         name: 'Ruby',
         age: 23,

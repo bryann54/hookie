@@ -8,13 +8,13 @@ class ActionButton extends StatefulWidget {
   final bool changeColorOnTap;
 
   const ActionButton({
-    Key? key,
+    super.key,
     required this.icon,
     required this.iconColor,
     required this.bgColor,
     required this.onTap,
     this.changeColorOnTap = true, // Default: enable color change
-  }) : super(key: key);
+  });
 
   @override
   State<ActionButton> createState() => _ActionButtonState();

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hookee/features/home/data/models/user_model.dart';
 import 'package:hookee/features/home/presentation/pages/user_details_screen.dart';
+
 class FavoritesWidget extends StatelessWidget {
   final User user;
   const FavoritesWidget({super.key, required this.user});

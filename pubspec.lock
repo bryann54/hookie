@@ -230,6 +230,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.2"
+  country_code_picker:
+    dependency: "direct main"
+    description:
+      name: country_code_picker
+      sha256: fdc2ae84d0342d4a7c6ebc83fbe002a70c8231ff5734505676292fc2c2cc4433
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   coverage:
     dependency: transitive
     description:
@@ -254,6 +262,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  curved_navigation_bar:
+    dependency: "direct main"
+    description:
+      name: curved_navigation_bar
+      sha256: bb4ab128fcb6f4a9f0f1f72d227db531818b20218984789777f049fcbf919279
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.6"
   dart_style:
     dependency: transitive
     description:
@@ -358,14 +374,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-  floating_frosted_bottom_bar:
-    dependency: "direct main"
-    description:
-      name: floating_frosted_bottom_bar
-      sha256: cdae311922b9a9ca7b1e0ec087f6579a28be31cdc7f89463e7df38c44e6ee667
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.1"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -403,14 +411,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.6.15"
-  flutter_floating_bottom_bar:
-    dependency: "direct main"
-    description:
-      name: flutter_floating_bottom_bar
-      sha256: "5aff247b2015837bd121b6c694fb30107ed5677cd74e3088f6a5a18e369bc0ec"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.2.1+1"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:

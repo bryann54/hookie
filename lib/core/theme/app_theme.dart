@@ -12,11 +12,9 @@ class AppTheme {
       secondary: AppColors.secondaryColor,
       tertiary: AppColors.accentColor,
       error: AppColors.error,
-      background: AppColors.background,
       surface: AppColors.surface,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
-      onBackground: AppColors.textPrimary,
       onSurface: AppColors.textPrimary,
     ),
     textTheme: const TextTheme(
@@ -24,7 +22,7 @@ class AppTheme {
           TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold),
       bodyMedium: TextStyle(color: AppColors.textSecondary),
     ),
-    cardTheme: CardTheme(
+    cardTheme: const CardTheme(
       color: AppColors.cardColor,
       elevation: 2,
       shadowColor: AppColors.shadowColor,
@@ -45,13 +43,11 @@ class AppTheme {
       secondary: AppColors.secondaryColorDark,
       tertiary: AppColors.accentColorDark,
       error: AppColors.errorDark,
-      background: AppColors.backgroundDark,
       surface: AppColors.surfaceColorDark,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
-      onBackground: AppColors.textPrimaryDark,
       onSurface: AppColors.textPrimaryDark,
-      surfaceVariant: Color(0xFF2C2C2C),
+      surfaceContainerHighest: Color(0xFF2C2C2C),
       inverseSurface: Colors.white,
     ),
     textTheme: const TextTheme(

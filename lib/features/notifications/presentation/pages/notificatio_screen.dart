@@ -36,7 +36,7 @@ class NotificationScreen extends StatelessWidget {
                         return const Center(child: CircularProgressIndicator());
                       } else if (state is NotificationsLoaded) {
                         return state.notifications.isEmpty
-                            ? NotificationEmptyState()
+                            ? const NotificationEmptyState()
                             : NotificationList(
                                 notifications: state.notifications);
                       }
