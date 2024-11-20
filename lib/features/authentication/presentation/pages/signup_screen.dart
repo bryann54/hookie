@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:hookee/core/constants/animated_bg.dart';
 import 'package:hookee/core/constants/colors.dart';
 import 'package:hookee/core/constants/string.dart';
-
 import 'package:hookee/features/authentication/presentation/widgets/email_input_row.dart';
 import 'package:hookee/features/authentication/presentation/widgets/phone_input_row.dart';
 import 'package:hookee/features/authentication/presentation/widgets/signup_button.dart';
 import 'package:hookee/features/home/data/models/user_model.dart';
 import 'package:hookee/features/home/presentation/widgets/bottom_nav.dart';
+import 'package:hookee/features/profile/data/models/new_user_model.dart';
 
 class SignupScreen extends StatefulWidget {
+  final NewUserModel userModel;
   final User user;
-  const SignupScreen({super.key, required this.user});
+  const SignupScreen({super.key, required this.user, required this.userModel});
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -27,6 +28,11 @@ class _SignupScreenState extends State<SignupScreen>
   String? _activeInputField;
   bool _isLoading = false;
   String? _errorMessage;
+
+  // New variables to store user input
+  String _firstName = '';
+  String _lastName = '';
+  String _email = '';
 
   @override
   void initState() {
@@ -52,6 +58,15 @@ class _SignupScreenState extends State<SignupScreen>
     });
   }
 
+  // New method to handle input from EmailInputRow
+  void _handleInputSubmitted(String firstName, String lastName, String email) {
+    setState(() {
+      _firstName = firstName;
+      _lastName = lastName;
+      _email = email;
+    });
+  }
+
   Future<void> _handleSignup() async {
     if (!_formKey.currentState!.validate()) {
       return;
@@ -63,17 +78,14 @@ class _SignupScreenState extends State<SignupScreen>
     });
 
     try {
-      // final String identifier = _activeInputField == 'email'
-      //     ? _emailController.text
-      //     : _phoneController.text;
-
-      // final userData = {
-      //   'identifier': identifier,
-      //   'signupMethod': _activeInputField,
-      //   'timestamp': DateTime.now().toIso8601String(),
-      // };
-
-      // final UserModel user = await AuthService.signUp(userData);
+      // Create new user model with the collected data
+      final newUserModel = NewUserModel(
+        name: '$_firstName $_lastName',
+        email: _email,
+        dob: '', // Can be added later
+        mobileNumber: _phoneController.text,
+        address: '', // Can be added later
+      );
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -86,7 +98,10 @@ class _SignupScreenState extends State<SignupScreen>
         await Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => BottomNav(user: widget.user,),
+            builder: (context) => BottomNav(
+              user: widget.user,
+              userModel: newUserModel,
+            ),
           ),
         );
       }
@@ -115,8 +130,6 @@ class _SignupScreenState extends State<SignupScreen>
     });
 
     try {
-      // final UserModel user = await AuthService.socialSignIn(provider);
-
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -128,8 +141,9 @@ class _SignupScreenState extends State<SignupScreen>
         await Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) =>  BottomNav(
+            builder: (context) => BottomNav(
               user: widget.user,
+              userModel: widget.userModel,
             ),
           ),
         );
@@ -255,18 +269,6 @@ class _SignupScreenState extends State<SignupScreen>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const SizedBox(height: 40),
-                        // Text(
-                        //   hookie,
-                        //   style: TextStyle(
-                        //     fontFamily: 'Dancing Script',
-                        //     fontSize: 27,
-                        //     fontWeight: FontWeight.bold,
-                        //     foreground: Paint()
-                        //       ..style = PaintingStyle.fill
-                        //       ..strokeWidth = 3
-                        //       ..color = Colors.pink.shade200.withOpacity(0.9),
-                        //   ),
-                        // ),
                         const SizedBox(height: 50),
                         Text(
                           signup_text,
@@ -277,8 +279,9 @@ class _SignupScreenState extends State<SignupScreen>
                             foreground: Paint()
                               ..style = PaintingStyle.fill
                               ..strokeWidth = 3
-                              ..color =
-                                  isDarkMode ? AppColors.cardColor : Colors.black,
+                              ..color = isDarkMode
+                                  ? AppColors.cardColor
+                                  : Colors.black,
                           ),
                         ),
                         const SizedBox(height: 20),
@@ -290,7 +293,10 @@ class _SignupScreenState extends State<SignupScreen>
                         AnimatedSize(
                           duration: const Duration(milliseconds: 300),
                           child: _activeInputField == 'email'
-                              ? EmailInputRow(controller: _emailController)
+                              ? EmailInputRow(
+                                  emailController: _emailController,
+                                  onInputSubmitted: _handleInputSubmitted,
+                                )
                               : const SizedBox.shrink(),
                         ),
                         const SizedBox(height: 15),

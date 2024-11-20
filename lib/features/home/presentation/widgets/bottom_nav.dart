@@ -5,6 +5,7 @@ import 'package:hookee/features/discover/presentation/pages/discover_screen.dart
 import 'package:hookee/features/favorites/presentation/pages/favorites_screen.dart';
 import 'package:hookee/features/home/data/models/user_model.dart';
 import 'package:hookee/features/home/presentation/pages/home_screen.dart';
+import 'package:hookee/features/profile/data/models/new_user_model.dart';
 import 'package:hookee/features/profile/presentation/pages/profile_screen.dart';
 
 class NavigationController extends ChangeNotifier {
@@ -19,7 +20,8 @@ class NavigationController extends ChangeNotifier {
 
 class BottomNav extends StatefulWidget {
   final User user;
-  const BottomNav({super.key, required this.user});
+  final NewUserModel userModel;
+  const BottomNav({super.key, required this.user, required this.userModel});
 
   @override
   State createState() => _BottomNavState();
@@ -35,7 +37,9 @@ class _BottomNavState extends State<BottomNav> {
       const DiscoverScreen(),
       const FavoriteScreen(),
       ChatsScreen(user: widget.user), // Pass the user to ChatsScreen
-      const ProfileScreen(),
+       ProfileScreen(
+        userModel: widget.userModel,
+      ),
     ];
   }
 

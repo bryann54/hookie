@@ -1,18 +1,43 @@
 import 'package:flutter/material.dart';
 
-class EmailInputRow extends StatelessWidget {
-  final TextEditingController controller;
+class EmailInputRow extends StatefulWidget {
+  final Function(String firstName, String lastName, String email)
+      onInputSubmitted;
+  final TextEditingController emailController;
 
   const EmailInputRow({
     super.key,
-    required this.controller,
+    required this.emailController,
+    required this.onInputSubmitted,
   });
 
   @override
-  Widget build(BuildContext context) {
-    final TextEditingController firstNameController = TextEditingController();
-    final TextEditingController lastNameController = TextEditingController();
+  State<EmailInputRow> createState() => _EmailInputRowState();
+}
 
+class _EmailInputRowState extends State<EmailInputRow> {
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+
+  @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    super.dispose();
+  }
+
+  void _submitData() {
+    final firstName = firstNameController.text;
+    final lastName = lastNameController.text;
+    final email = widget.emailController.text;
+
+    if (firstName.isNotEmpty && lastName.isNotEmpty && email.isNotEmpty) {
+      widget.onInputSubmitted(firstName, lastName, email);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         Row(
@@ -28,10 +53,10 @@ class EmailInputRow extends StatelessWidget {
                   ),
                   child: Center(
                     child: TextFormField(
-                      controller:
-                          firstNameController, // Use separate controller
+                      controller: firstNameController,
                       keyboardType: TextInputType.name,
                       textInputAction: TextInputAction.next,
+                      onChanged: (_) => _submitData(),
                       decoration: const InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
                           vertical: 10,
@@ -70,9 +95,10 @@ class EmailInputRow extends StatelessWidget {
                   ),
                   child: Center(
                     child: TextFormField(
-                      controller: lastNameController, // Use separate controller
+                      controller: lastNameController,
                       keyboardType: TextInputType.name,
-                      textInputAction: TextInputAction.done,
+                      textInputAction: TextInputAction.next,
+                      onChanged: (_) => _submitData(),
                       decoration: const InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
                           vertical: 10,
@@ -115,10 +141,10 @@ class EmailInputRow extends StatelessWidget {
                   ),
                   child: Center(
                     child: TextFormField(
-                      // Changed to TextFormField for form validation
-                      controller: controller,
+                      controller: widget.emailController,
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.done,
+                      onChanged: (_) => _submitData(),
                       decoration: const InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
                           vertical: 10,

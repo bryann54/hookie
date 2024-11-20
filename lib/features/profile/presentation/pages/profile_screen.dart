@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:hookee/core/constants/bg_widget.dart';
 import 'package:hookee/core/constants/colors.dart';
 import 'package:hookee/core/theme/theme_toggle_switch.dart';
+import 'package:hookee/features/profile/data/models/new_user_model.dart';
 import 'package:hookee/features/profile/presentation/widgets/logout_button_widget.dart';
 import 'package:hookee/features/profile/presentation/widgets/option_widget.dart';
 import 'package:hookee/features/profile/presentation/widgets/static_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  final NewUserModel userModel;
+  const ProfileScreen({super.key, required this.userModel});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'John Doe',
+                           userModel.name,
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineSmall
@@ -47,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                           ),
                           Text(
-                            'john.doe@example.com',
+                            userModel.email,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium

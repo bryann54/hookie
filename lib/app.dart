@@ -8,12 +8,14 @@ import 'package:hookee/features/home/data/repositories/user_repository.dart';
 import 'package:hookee/features/home/presentation/bloc/home_bloc.dart';
 import 'package:hookee/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:hookee/features/notifications/presentation/bloc/notifications_bloc.dart';
+import 'package:hookee/features/profile/data/models/new_user_model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class App extends StatelessWidget {
+  final NewUserModel userModel;
   final User user;
-  const App({super.key, required this.user});
+  const App({super.key, required this.user, required this.userModel});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class App extends StatelessWidget {
               darkTheme: AppTheme.darkTheme,
               themeMode: themeController.themeMode,
               home: SignupScreen(
-                user: user,
+                user: user, userModel: userModel,
               ),
             );
           },
